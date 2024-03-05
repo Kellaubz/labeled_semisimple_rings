@@ -36,7 +36,7 @@ def partition(n):
         y = x + y - 1
         yield tuple(a[: k + 1])
 
-## get the non-one divisor of p
+## get the square root of the non-one square divisor of p
 def divisors(p):
     if p == 1:
         yield 1
@@ -44,12 +44,18 @@ def divisors(p):
     divisors_bigger_than_sqrt=[]
     for i in range(2,sqrt):
         if p % i == 0:
-            yield i
+            sqrti = np.sqrt(i)
+            if int(sqrti) == sqrti:
+                yield int(sqrti)
             if i+1 != sqrt:
                 divisors_bigger_than_sqrt.append(int(p/i))
     for i in reversed(divisors_bigger_than_sqrt):
-        yield i
-    yield p
+        sqrti = np.sqrt(i)
+        if int(sqrti) == sqrti:
+            yield int(sqrti)
+    sqrtp = np.sqrt(p)
+    if int(sqrtp) == sqrtp:    
+        yield int(sqrtp)
 
 ## get a non-one divisor for each p in P
 def iterate_divisors(P):
@@ -87,7 +93,7 @@ def mult(D):
 def aut(D,p):
     res = mult(D)
     for (m,k) in D:
-        res = res * aut_matrix(p,k,int(m/k))
+        res = res * aut_matrix(p,k,int(m/(k**2)))
     return res
 
 ## compute a(p^n)
