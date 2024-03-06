@@ -38,13 +38,13 @@ def partition(n):
         y = x + y - 1
         yield tuple(a[: k + 1])
 
-## get the square root of the non-one square divisor of p
+## get the square root of the square divisor of p
 def divisors(p):
     if p == 1:
         yield 1
     sqrt=int(np.sqrt(p)+1)
     divisors_bigger_than_sqrt=[]
-    for i in range(2,sqrt):
+    for i in range(1,sqrt):
         if p % i == 0:
             sqrti = np.sqrt(i)
             if int(sqrti) == sqrti:
@@ -59,7 +59,7 @@ def divisors(p):
     if int(sqrtp) == sqrtp:    
         yield int(sqrtp)
 
-## get a non-one divisor for each p in P
+## get a square root of a divisor for each p in P
 def iterate_divisors(P):
     if len(P) == 1:
         for d in divisors(P[0]):
@@ -101,11 +101,12 @@ def aut(D,p):
 ## compute a(p^n)
 def a(p,n):
     fn = factorial(p**n)
-    res = fn
+    ##res = fn ## It would have been a clever trick it it worked
+    res = 0
     for P in partition(n):
         if P[-1] == 1:
             continue        ## if all ones, we get a commutative ring
         decompositions = set_decompositions(P)
         for D in decompositions:
-            res += int(fn/aut(D,p))
+            res += fn//aut(D,p)
     return res
