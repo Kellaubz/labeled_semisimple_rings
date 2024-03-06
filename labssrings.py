@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+## The code it totally broken
+
 import numpy as np
 
 ## compute the number of ring automorphism of M_k(F_{p^l})
