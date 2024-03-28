@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-## The code it totally broken
+## The code it outputting something
 
 import numpy as np
 
@@ -105,7 +105,7 @@ def a(p,n):
     res = 0
     for P in partition(n):
         if P[-1] == 1:
-            continue        ## if all ones, we get a commutative ring
+            continue        ## if all ones, we get nothing interesting
         decompositions = set_decompositions(P)
         for D in decompositions:
             res += fn//aut(D,p)
